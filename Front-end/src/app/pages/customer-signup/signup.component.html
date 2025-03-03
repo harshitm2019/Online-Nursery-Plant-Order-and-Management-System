@@ -1,0 +1,127 @@
+<app-registration-success *ngIf="showSuccessCard" [signupComponent]="this"></app-registration-success>
+<div class="dropdown ms-3" >
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Create Account
+    </button>
+    <ul class="dropdown-menu">
+      <li><button class="dropdown-item" type="button" onclick="showSignupCard()">Customer</button></li>
+      <li><button class="dropdown-item" type="button" (click)="showAdminPassword()">Staff</button></li>   
+    </ul>
+  </div>
+  
+   <!-- Registraion Failed Card -->
+
+  <div class="registration-failed-container" *ngIf="showFailedCard || showStaffFailedCard" >
+    <div class="registration-failed-card">
+      <div class="card-content">
+        <h2>Registration Failed</h2>
+        <p>Duplicate Email</p>
+        <button (click)="closeFailedCard()"  *ngIf="showFailedCard" onclick="showSignupCard()">Try Again</button>
+        <button *ngIf="showStaffFailedCard"  (click)="closeStaffFailedCard()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="signup">
+    <div class="card position-relative">
+        <span id="closeButton" onclick="hideSignupCard()">✖</span>
+        <div class="card-body">
+            <!-- Your Customer Login Form -->
+            <h5>Sign Up</h5>
+            <form #myForm = ngForm (ngSubmit)="register(myForm)">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" [(ngModel)]="regobj.cName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="regobj.email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="regobj.password">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required [(ngModel)]="regobj.cAdress">
+                </div>
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Contact</label>
+                    <input type="tel" class="form-control" id="contact" name="contact" required [(ngModel)]="regobj.contactNo">
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" name="state" required [(ngModel)]="regobj.state">
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city" required [(ngModel)]="regobj.city">
+                </div>
+                <button type="submit" class="btn btn-primary"  onclick="hideSignupCard()">Signup</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+   <!-- Admin Password card-->
+
+<div class="container" id="adminPassword" *ngIf="showCheckAdminPassword">
+
+     <div class="card position-relative">
+         <span id="closeButton" (click)="hideAdminPassword()">✖</span>
+         <div class="card-body">
+
+           <form>
+
+            <div class="mb-3">
+                <label for="adminPassword" class="form-label">Admin Password</label>
+                <input type="password" class="form-control"  name="adminPassword" [(ngModel)]="staffregobj.password" required>
+                
+            </div>
+            <button type="button" class="btn btn-primary" (click)="checkAdminPassword()">Submit</button>
+           </form>
+         </div>   
+     </div>
+</div>
+ 
+ <!-- Staff signup Form -->
+
+<div class="container"  *ngIf="showStaffSignupCard" id="staffsignup" style="display: block;" >
+    <div class="card position-relative">
+        <span id="closeButton" (click)="hideStaffSignupCard()">✖</span>
+        <div class="card-body">
+            
+            <h5>Sign Up</h5>
+            <form #myForm = ngForm (ngSubmit)="staffregister(myForm)">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="name" [(ngModel)]="staffregobj.sname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="staffregobj.email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="staffregobj.password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" [(ngModel)]="staffregobj.sAddress" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Contact</label>
+                    <input type="tel" class="form-control" id="contact" name="contact" [(ngModel)]="staffregobj.contactNo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="job" class="form-label">Job/Designation</label>
+                    <input type="text" class="form-control" id="job" name="job" [(ngModel)]="staffregobj.job" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Signup</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

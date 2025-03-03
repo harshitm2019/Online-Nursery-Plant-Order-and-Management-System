@@ -1,0 +1,16 @@
+.table {
+    background-color: #fff;
+    color: #333;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: rgba(111, 53, 191, 0.7);
+    color: #fff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}

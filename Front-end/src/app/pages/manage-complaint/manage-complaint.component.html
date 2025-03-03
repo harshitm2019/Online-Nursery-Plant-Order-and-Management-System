@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders - Nursery Plant Staff Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        referrerpolicy="no-referrer" rel="stylesheet" />
+        
+</head>
+
+<body>
+    <div class="container" style=" height: 100vh;">
+        <div class="dashboard-header row">
+            <div class="col-md-8">
+                <h1>Manage Complaint</h1>
+            </div>
+            <div class="col-md-4">
+                <span><button style="margin-left: 100px;" type="button" (click)="dashboard()" class="btn btn-dark">Dashboard</button></span>
+            </div>
+           
+        </div>
+        <div class="card-container">
+            <!-- Add Plant Card -->
+            <div class="card">
+                <h5>Pending Complaint</h5>
+                <p>Click below to view pending complaint details</p>
+                <button type="button" (click)="viewPendingOrders()" class="btn btn-primary">View Pending Complaint</button>
+            </div>
+
+            <!-- Search Plant Card -->
+            <div class="card">
+                <h5>Completed Complaint</h5>
+                <p>Click below to view completed complaint details</p>
+                <button type="button" class="btn btn-primary" (click)="viewCompletedOrders()">View Completed complaint</button>
+            </div> 
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+

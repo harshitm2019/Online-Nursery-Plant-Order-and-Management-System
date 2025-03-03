@@ -1,0 +1,237 @@
+
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-color py-4 pt-lg-5">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="#">Nursery Plant Dashboard</a>
+
+            <div class="dropdown ms-auto">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="settingsDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-cog">Settings</i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+                    <li><button class="dropdown-item" type="button" (click)="showDetails()">View Your Details</button>
+                    </li>
+                    <li><button class="dropdown-item" type="button" (click)="showPassword()">Change Password</button>
+                    </li>
+                    <li><button class="dropdown-item" type="button" (click)="showAddress()">Change Address</button></li>
+                    <li><button class="dropdown-item" type="button" (click)="showContact()">Change Contact</button></li>
+                    <li><button class="dropdown-item" type="button" (click)="logout()">Logout</button></li>
+                </ul>
+            </div>
+            <!-- Add any additional navigation items or dropdowns here -->
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+
+    <!-- Card implementation  -->
+
+    <div class="container mt-4">
+
+        <div id="loginOverlay"></div>
+
+        <div class="container" id="userdetails" *ngIf="showViewDetails">
+            <div class="card-header">
+                <h5>User Information</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hideDetailsCard()">✖</span>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" >
+                        <strong>Email:</strong> {{ cusObj.email }}<br>
+                        <strong>Contact:</strong> {{ cusObj.contactNo }}<br>
+                        <strong>Address:</strong> {{ cusObj.cAdress }}<br>
+                        <strong>City:</strong> {{ cusObj.city }}<br>
+                        <strong>State:</strong> {{ cusObj.state }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="changePassword" *ngIf="showChangePassword">
+            <div class="card-header">
+                <h5>Change Password</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hidePasswordCard()">✖</span>
+                <div class="card-body">
+                    <form>
+                        <label for="old-password" class="form-label">Old Password</label>
+                        <input type="password" class="form-control" id="pass" required name="old-password" [(ngModel)]="passwordObj.param1">
+                        <label for="new-password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="newpassword" required name="new-password" [(ngModel)]="passwordObj.param2">
+                        <button type="button" class="btn btn-primary mt-3" value="Submit" (click)="changePassword()">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="changePassword" *ngIf="showPasswordChangedMsg">
+            <div class="card-header">
+                <h5>PassWord Changed Status</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hidePasswordChangedMsg()">✖</span>
+                <div class="card-body">
+                    <h4 [ngStyle]="{ color: isError ? 'red' : 'green' }">{{passwordStatusMsg}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="changeAddress" *ngIf="showChangeAddress" style="height: 480px;">
+            <div class="card-header">
+                <h5>Change Address</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hideAddressCard()">✖</span>
+                <div class="card-body">
+                    <form>
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" required name="address" [(ngModel)]="addressObj.address">
+                        <label for="state" class="form-label">State</label>
+                        <input type="text" class="form-control" id="state" required name="state" [(ngModel)]="addressObj.state">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" required name="city" [(ngModel)]="addressObj.city">
+                        <label for="pincode" class="form-label">Pincode</label>
+                        <input type="text" class="form-control" id="pincode" required name="pincode" [(ngModel)]="addressObj.pincode">
+                        <button type="button" class="btn btn-primary mt-3" (click)="changeAdress()" value="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="changePassword" *ngIf="showAddressChangedMsg">
+            <div class="card-header">
+                <h5>Address Changed Status</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hideAddrssChangedMsg()">✖</span>
+                <div class="card-body">
+                    <h4 [ngStyle]="{ color: isError ? 'red' : 'green' }">{{addressStatusMsg}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="changeContact" *ngIf="showChangeContact">
+            <div class="card-header">
+                <h5>Change Contact</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hideContactCard()">✖</span>
+                <div class="card-body">
+                    <form>
+                        <label for="contact" class="form-label">New Contact No.</label>
+                        <input type="text" class="form-control" id="contact" required name="contact" [(ngModel)]="contactobj.param1">
+                        <button type="button" class="btn btn-primary mt-3" (click)="changeContact()" value="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="changePassword" *ngIf="showContactChangedMsg">
+            <div class="card-header">
+                <h5>Contact Changed Status</h5>
+            </div>
+            <div class="card position-relative">
+                <span id="closeButton" (click)="hideContactChangedMsg()">✖</span>
+                <div class="card-body">
+                    <h4 [ngStyle]="{ color: isError ? 'red' : 'green' }">{{contactStatusMsg}}</h4>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action active" aria-current="true">
+                        Dashboard
+                    </a>
+                    <button class="list-group-item list-group-item-action" type="button" (click)="searchPlants()">Search Plants</button>
+                    <button class="list-group-item list-group-item-action" type="button" (click)="myorders()">My Orders</button>
+                    <button class="list-group-item list-group-item-action" type="button" (click)="showComplaintForm()">Complaint</button>
+                    <button class="list-group-item list-group-item-action" type="button" (click)="showComplaintDetails()">My Complaint</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+             <div class="col-lg-9">
+                <h2 class="mb-4">Welcome to Nursery Plant Dashboard</h2>
+            </div>
+        </div>
+    </div>
+
+    <!--  for displaying user deatils -->
+
+    <!-- <script>
+        // show details card
+        // function showDetails() {
+
+        //     document.getElementById('userdetails').style.display = 'block';
+        //     document.getElementById('loginOverlay').style.display = 'block';
+
+        // }
+        // hide details card
+        function hideDetailsCard() {
+
+            document.getElementById('userdetails').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+
+        // Show password card
+        function showPassword() {
+
+            document.getElementById('changePassword').style.display = 'block';
+            document.getElementById('loginOverlay').style.display = 'block';
+
+        }
+        // hide password card
+        function hidePasswordCard() {
+
+            document.getElementById('changePassword').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+        // Show Address Card
+        function showAddress() {
+
+            document.getElementById('changeAddress').style.display = 'block';
+            document.getElementById('loginOverlay').style.display = 'block';
+
+        }
+        // hide Address Card
+        function hideAddressCard() {
+
+            document.getElementById('changeAddress').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+
+        // Show Address Card
+        function showContact() {
+
+            document.getElementById('changeContact').style.display = 'block';
+            document.getElementById('loginOverlay').style.display = 'block';
+
+        }
+        // hide Address Card
+        function hideContactCard() {
+
+            document.getElementById('changeContact').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script> -->
+

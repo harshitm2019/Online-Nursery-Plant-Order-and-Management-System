@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        referrerpolicy="no-referrer" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-black" href="#">Nursery Plant</a>
+            <div class="col-lg-3">
+            <button type="button" class="btn btn-dark" style="margin-right: 5px;" (click)="showCart()" >View Cart</button>
+            <button type="button" class="btn btn-dark" (click)="showDashboard()">Back To Dashboard</button>
+        </div>
+        </div>
+    </nav>
+
+    <!-- Plant Search Content -->
+    <div class="container">
+        <h2 class="mb-4 ">Plant Search</h2>
+     
+        <!-- Search Form -->
+        <form  #myForm = ngForm  (ngSubmit)="searchCriteria(myForm)">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="plantType" ><h5>Plant Season</h5></label>
+                        <select class="form-control" id="plantSeason" name="season" [(ngModel)]="searchCriteriaObj.season">
+                            <option value="">Select</option>
+                            <option value="all">All</option>
+                            <option value="Spring">Spring</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Autumn">Autumn</option>
+                            <option value="Winter">Winter</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                   <div class="form-group">
+                      <label for="plantName"><h5>Plant Name</h5></label>
+                      <input type="text" class="form-control" name="plant-name" [(ngModel)]="searchCriteriaObj.plantName">
+                   </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Search</button>
+        </form>
+
+        <!-- Plant Cards -->
+        <div class="container mt-5" *ngIf="showPlantDetails">
+        <div class="row">
+            <div class="row row-cols-3">
+                <div class="plant-card col mb-4" *ngFor="let i of plantMaster;let idx = index">
+                    <img src="{{i.imgAddr}}" alt="Plant Image" class="plant-image">
+                    <div class="plant-details">
+                        <h5 class="plant-name">{{i.plantName}}</h5>
+                        <p class="plant-type">{{i.plantType}}</p>
+                        <p class="plant-amount">Rs.{{i.rate}}</p>
+                        <div class="col">
+                             
+                        <input type="text" style="width: 100px;"  [(ngModel)]="quantities[idx]" class="form-control mt-3" id="qty" required placeholder="Qty">
+                        <p *ngIf="showAddToCartMsg[idx]"  [ngStyle]="{'color': addToCartMsg === 'Added successfully'? 'green' : 'red'}">{{ addToCartMsg }}</p>
+                        <button type="button" class="btn btn-primary mt-3" (click)="addToCart(i.plantId,quantities[idx],i.plantName,i.rate,idx)" >Add to Cart</button>
+                        </div>
+                    </div>
+              </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

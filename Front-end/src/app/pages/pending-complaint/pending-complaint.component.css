@@ -1,0 +1,23 @@
+.table th {
+    background-color: rgb(60, 99, 71);
+    color: #fff;
+}
+
+.navbar-brand {
+    margin-right: 0; /* Adjust margin for navbar-brand */
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        margin-right: 0;
+    }
+    .col-md-6 {
+        position: relative;
+        right: auto;
+    }
+
+    .navbar-collapse {
+        flex-basis: 100%; /* Collapse the navbar items into a single column */
+    }
+
+}

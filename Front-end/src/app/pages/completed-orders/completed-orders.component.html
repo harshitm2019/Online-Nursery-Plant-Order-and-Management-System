@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+     
+    <nav class="navbar  bg-color py-4 pt-lg-5">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="#">Nursery Plant</a>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-dark mt-4 mb-3" style="margin-right: 5px;" (click)="manageOrder()">Manage Orders</button>
+                <button type="button" class="btn btn-dark mt-4 mb-3" style="margin-right: 7px;" (click)="dashboard()">Dashboard</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Order Details Content -->
+    <div class="container mt-4">
+        <h2 class="mb-4">Completed Order Details</h2>
+        <!-- Table -->
+        <!-- <input type="date" placeholder="Search By Date"> -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+              <h6 style="font-size: larger;">Select the date :</h6>
+              <div class="input-group input-group-sm">
+                <input type="date" name="plantdate" class="form-control" id="dateInput" [(ngModel)]="plantDate">
+              </div>      
+            </div>
+            <div class="col-md-3">
+                <h6 style="font-size: larger;">Enter The Staff id :</h6>
+                <div class="input-group input-group-sm">
+                  <input type="text" [(ngModel)]="staffId" placeholder="Enter Staff id" style="border-radius: 6px;" class="form-control">
+                </div>      
+              </div>
+              <div class="col-md-3">
+                <h6 style="font-size: larger;">Order No :</h6>
+                <div class="input-group input-group-sm">
+                    <input type="text" [(ngModel)]="plantOrderNo" placeholder="Enter the Order No" style="border-radius: 6px;" class="form-control">
+                </div>      
+              </div>
+              <div class="col-md-3">
+                <h6 style="font-size: larger;">Plantation Id</h6>
+                <div class="input-group input-group-sm">
+                    <input type="text" [(ngModel)]="plantationId" placeholder="Enter the Plantation Id" style="border-radius: 6px;" class="form-control">
+                </div>      
+              </div>
+              <div class="col-md-3 mt-4">  
+                <button type="button" (click)="search()" class="btn btn-primary">Search</button>     
+              </div>
+          </div>
+
+          <div class="table-responsive mt-4">
+            <table class="table table-bordered table-striped" *ngIf="showUpdateCard">
+                <thead>
+                   <tr>
+                       <th>Staff Id</th>
+                       <th>Plantation Date</th>
+                       <th>AMC Start</th>
+                       <th>AMC End</th>
+                       <th>Other Cost</th>
+                       <th>Action</th>
+                   </tr>
+                </thead>
+                   <tbody>
+                         <tr>
+                            <td><input type="text" name="staffId" class="form-control" [(ngModel)]="plantationObj[i].staffId" placeholder="Enter the Staff id" required></td> 
+                            <td><input type="date" name="plantdate" class="form-control" [(ngModel)]="plantationObj[i].plantDate" placeholder="Enter Plantation date" required></td>
+                            <td><input type="date" name="amcStart" class="form-control" [(ngModel)]="plantationObj[i].amcStart" placeholder="Enter Amc Start Date" [disabled]="showAmcOptions" required ></td>
+                            <td><input type="date" name="amcEnd" class="form-control" [(ngModel)]="plantationObj[i].amcEnd" placeholder="Enter Amc End Date" [disabled]="showAmcOptions" required ></td>
+                            <td><input type="text" name="otherCost" class="form-control" [(ngModel)]="plantationObj[i].otherCost" placeholder="Enter Other Cost" required></td>
+                            <td><button type="button" class="btn btn-dark" (click)="submit(plantationObj[i])">Submit</button>
+                                <button type="button" class="btn btn-danger ms-3" (click)="discard()" name="discard">X</button></td>
+                       </tr>
+                   </tbody>
+            </table>
+            </div> 
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Plantation Id</th>
+                        <th>Plant Order No</th>
+                        <th>Plant Date</th>
+                        <th>Staff Id</th>
+                        <th>AMC Start</th>
+                        <th>AMC End</th>
+                        <th>Other Cost</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of plantationObj;let idx = index">
+                        <td>{{i.plantationId}}</td>
+                        <td>{{i.plantOrderNo}}</td>
+                        <td>{{i.plantDate}}</td>
+                        <td>{{i.staffId}}</td>
+                        <td>{{i.amcStart}}</td>
+                        <td>{{i.amcEnd}}</td>
+                        <td>{{i.otherCost}}</td>
+                        <td><button type="button" 
+                        (click)="update(i.plantationId,idx,i.amcStart,i.staffId)"  class="btn btn-primary">Update</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+            <h4>After all update submit here</h4> 
+             <button class="btn btn-primary" (click)="submitAll()" type="button">Submit All</button>
+ 
+         
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

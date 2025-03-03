@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Plant - Nursery Plant Staff Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        referrerpolicy="no-referrer" rel="stylesheet"/>
+     
+</head>
+
+<body>
+    <div class="container" style=" height: 100vh;">
+        <nav>
+            <div class="col-lg-5">
+                <button style="background-color: palevioletred" type="button" class="btn btn-primary" (click)="managePlant()">Manage Plants</button>
+            </div>
+            <div class="col-lg-3">
+                <button type="button" style="background-color: palevioletred;" class="btn btn-primary mb-3" (click)="dashboard()">Dashboard</button>
+            </div>
+        </nav>
+
+        <div class="search-container">
+            <h2 class="mb-4">Search Plant</h2>
+            <form>
+                <div class="form-group">
+                    <label for="plantName">Plant Name</label>
+                    <input type="text" id="plantName" name="plantName" placeholder="Enter Plant Name" [(ngModel)]="searchCriteriaObj.plantName">
+                </div>
+
+                <div class="form-group">
+                    <label for="plantType">Plant Type</label>
+                    <select id="plantType" name="plantType" [(ngModel)]="searchCriteriaObj.plantType">
+                        <option value="">Select Plant Type</option>
+                        <option value="Flowering Plant">Flowering Plant</option>
+                        <option value="Foliage Plant">Foliage Plant</option>
+                        <option value="Shrub">Shrub</option>
+                        <option value="Herbs">Herbs</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="plantSeason">Plant Season</label>
+                    <select id="plantSeason" name="plantSeason" [(ngModel)]="searchCriteriaObj.season">
+                        <option value="">Select Plant Season</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Autumn">Autumn</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+                </div>
+
+                <button type="submit" (click)="searchCriteria()">Search</button>
+            </form>
+        </div>
+        <table >
+            <thead>
+                <tr>
+                    <th>Plant ID</th>
+                    <th>Plant Name</th>
+                    <th>Plant Type</th>
+                    <th>Plant Season</th>
+                    <th>Plant Benefits</th>
+                    <th>Rate</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="showSearchCriteriaTable">
+                <tr *ngFor="let i of showPlantBasedOnCriteria">
+                    <td>{{i.plantId}}</td>
+                    <td>{{i.plantName}}</td>
+                    <td>{{i.plantType}}</td>
+                    <td>{{i.season}}</td>
+                    <td>{{i.benefits}}</td>
+                    <td>{{i.rate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

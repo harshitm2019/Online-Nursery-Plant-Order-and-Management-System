@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="D:\Project\online-nursery-plant\src\styles.css">  
+
+        <style>html, body {
+            scroll-behavior: smooth;
+        }</style>
+
+</head>
+
+<body>
+    <!-- Nav tabs -->
+    <nav class="navbar navbar-expand-lg bg-color py-4 pt-lg-5">
+    <div class="container">
+        <a class="navbar-brand text-white fw-bold" href="#">Nursery Plant</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                <li class=" nav-item">
+                    <a aria-current="page" class="nav-link active" href="#">Home</a>
+                </li>
+                <li class=" nav-item">
+                    <a class=" nav-link" href="#about">About</a>
+                </li>
+                <li class=" nav-item">
+                    <a class=" nav-link" href="#services">Services</a>
+                </li>
+                <li class=" nav-item">
+                    <a class=" nav-link" href="#contactUs">Contact</a>
+                </li>
+                 <app-login ngSkipHydration></app-login> 
+                  <!-- Customer Signup -->
+                  <app-signup ngSkipHydration></app-signup>
+
+                  <button type="button" (click)="searchPlant()" class="btn btn-primary ms-3">Search Plant</button>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--hero section-->
+<section class="bg-main bg-color hero-section">
+
+    <div id="loginOverlay"></div>
+
+     
+    <div class="container">
+        <div class="row mb-5 ">
+            <div class="d-flex flex-column align-items-start  justify-content-center col-xl-6 xol-lg-6 col-md-12 col-12 order-1 order-lg-0 text-md-start text-center">
+                <h1 class=" text-capitalize fw-bolder text-white">
+                    We Collect High Quality Leads
+                </h1>
+                <p class="mt-3 mb-5  para-width text-light-grey">
+                    In the world of nurturing leads, akin to tending to a garden, precision and care are paramount. Just as a gardener meticulously maintains each plant, we uphold a Nursery Plant Maintenance System dedicated to cultivating high-quality leads.     
+                </p>
+
+                <div class="text-center w-100 text-md-start">
+                    <button class="btn btn-primary px-5 py-2 " data-bs-offset="0,5" data-bs-placement="top"
+                            data-bs-title="Get Best Services" data-bs-toggle="tooltip">Contact Us
+                    </button>
+                </div>
+
+            </div>
+             <div class="col-xl-6 xol-lg-6 col-md-12 col-12 order-0 order-lg-1">
+                <div class="text-md-end text-center mb-5">
+                   <img src="https://cdn.pixabay.com/photo/2017/07/18/08/13/plants-2515134_1280.jpg" class="hero-img--section">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="custom-shape-divider-bottom-1684208460">
+        <svg data-name="Layer 1" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+            <path class="shape-fill"
+                  d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+        </svg>
+    </div>
+</section>
+
+<section id="services" class="services-section">
+    
+     <div class="container text-center common-title fw-bold">
+          <h2 class="common-heading">Services</h2>
+          <hr class="w-25 mx-auto">
+     </div>
+
+     <div class="container mt-5">
+        <div class="row g-5 ">
+            <div class="col-xxl-4 col-lg-4 col-12 ">
+                <div class=" card-box rounded-2 p-5 text-center">
+                    <img alt="Image" class="img-fluid" src="https://cdn.pixabay.com/photo/2019/09/05/11/43/green-4453840_1280.jpg" width="200px">
+
+                    <h5 class="my-3 fw-normal ">Quality Plantation Products</h5>
+                    <p class="pe-3 mb-5">
+                        We provide good quality plantation equipment
+                    </p>
+                    
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-lg-4 col-12 ">
+                <div class=" card-box rounded-2 p-5 text-center shadow">
+                    <img alt="Image" class="img-fluid" src="https://cdn.pixabay.com/photo/2013/11/13/13/54/poinsettia-210023_1280.jpg" width="200px">
+
+                    <h5 class="my-3 fw-normal ">Good Quality Plants</h5>
+                    <p class="pe-3 mb-5">
+                        We provide good Quality of plant
+                    </p>
+                    
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-lg-4 col-12 ">
+                <div class=" card-box rounded-2 p-5 text-center">
+                    <img alt="Image" class="img-fluid" src="https://cdn.pixabay.com/photo/2021/04/04/21/16/herbs-6151536_1280.jpg" width="200px">
+
+                    <h5 class="my-3 fw-normal ">Varieties Of Plant</h5>
+                    <p class="pe-3 mb-5">
+                        We Provide varities of plant at doorstep
+                    </p>
+                    
+                </div>
+            </div>
+
+        </div>
+        
+     </div>
+</section>
+
+<section id="contactUs" class="common-section bg-color contact-section text-white">
+
+
+    <div class="container text-center fw-bold common-title ">
+        <h2 class="common-heading text-white ">Contact Us</h2>
+        <hr class="w-25 mx-auto">
+    </div>
+
+    <div class="container ">
+        <div class="form-section  mx-auto">
+            <form>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="first-name" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="first-name" placeholder="First name"
+                                   aria-label="First name" required>
+                        </div>
+                        <div class="col">
+                            <label for="last-name" class="form-label">Last name</label>
+                            <input type="text" class="form-control" id="last-name" placeholder="Last name"
+                                   aria-label="Last name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control" [(ngModel)]="contactUsObj.email" required placeholder="Enter your email" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Text area</label>
+                    <textarea class="form-control" [(ngModel)]="contactUsObj.message" name="query" id="exampleFormControlTextarea1" required placeholder="Enter your message " rows="3"></textarea>
+                </div>
+                <button type="button" (click)="contactUs()" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="custom-shape-divider-bottom-1684208460">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                  class="shape-fill"></path>
+        </svg>
+    </div>
+
+</section>
+
+<!-- Footer Section Start-->
+
+<footer class="main-footer-section" id="about">
+    <div class="contact-details">
+        <div class="container px-5">
+            <div class="row g-0">
+                <div class="col-lg-6 ">
+                    <div class="contact-div p-5 d-flex flex-column justify-content-center align-items-center">
+                        <div class="icon-div d-flex justify-content-center align-items-center rounded-circle mb-3">
+                            <img src="https://cdn.pixabay.com/photo/2017/01/31/14/36/blue-2024619_1280.png" alt="Image" class="img-fluid">
+                        </div>
+                        <p class="text-black">(+91) 99999 99999</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 ">
+                    <div class="contact-div p-5 d-flex flex-column justify-content-center align-items-center">
+                        <div class="icon-div d-flex justify-content-center align-items-center rounded-circle mb-3">
+                            <!--                            <i class="fa-solid fa-phone"></i>-->
+                            <img src="https://cdn.pixabay.com/photo/2012/04/11/17/17/telephone-29012_1280.png" alt="Image" class="img-fluid">
+                        </div>
+                        <p class="text-black">(011) 2238 2238</p>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+
+        <div class="footer-section py-5 text-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="footer-links">
+                            <h4 class="text-black mt-5 mb-3">About</h4>
+                            <ul class="text-black list-unstyled d-flex flex-column gap-2">
+                                <li><button id="buttonNone" (click)="ourMission()">Our Mission</button></li>
+                                <li><button id="buttonNone" (click)="whoWeAre()">Who We Are</button></li>
+                                <li><button id="buttonNone" (click)="ourApproach()">Our Approach</button></li>
+                                <li><button id="buttonNone" (click)="services()">Services</button></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ 
+        <div class="container text-black" >
+            <hr class="container mx-auto">
+
+            <div class="row">
+                <div class="col-lg-8 col-12 text-black" >
+                    Copyright ©2024 All rights reserved.
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="d-flex justify-content-center justify-content-lg-end gap-5 mt-lg-0 mt-3 text-black">
+                        <a href="#" target="_blank">
+                            <div class="icon-span d-flex justify-content-center align-items-center rounded-circle mb-3">
+                                <i class="fa-brands fa-instagram text-black"></i>
+                            </div>
+                        </a>
+                        <div class="icon-span d-flex justify-content-center align-items-center rounded-circle mb-3">
+                            <i class="fa-brands fa-whatsapp text-black"></i>
+                        </div>
+                        <div class="icon-span d-flex justify-content-center align-items-center rounded-circle mb-3">
+<!--                            <i class="fa-brands fa-whatsapp"></i>-->
+                            <i class="fa-brands fa-twitter text-black"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Footer Section Ends-->
+    <!--  Javascript code to display login form -->
+    
+        <script>const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))</script>   
+</body>
+
+</html>

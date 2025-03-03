@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+</head>
+<body>
+    
+      <h1 style="text-align: center;color: green;">Thank You For Purchasing</h1>
+      <h2 style="text-align: center;">Have a Good Day !</h2>
+
+      <script>
+        // Delay in milliseconds before redirecting to the dashboard
+        var delayInMilliseconds = 5000; // 5 seconds
+
+        // Function to redirect to the dashboard page
+        function redirectToDashboard() {
+            window.location.href = '/customerDashboard';
+        }
+
+        // Set a timeout to call the redirectToDashboard function after the specified delay
+        setTimeout(redirectToDashboard, delayInMilliseconds);
+    </script>
+
+</body>
+</html>

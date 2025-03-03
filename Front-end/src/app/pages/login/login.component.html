@@ -1,0 +1,37 @@
+<div class="dropdown ms-3">
+    <button class="btn btn-secondary" (click)="showLoginCard(true)">
+      Login
+    </button>
+</div>
+
+  <div class="registration-failed-container" *ngIf="showloginfailedCard" >
+    <div class="registration-failed-card">
+      <div class="card-content">
+        <h2>Login Failed</h2>
+        <p>Invalid Credentials</p>
+        <button (click)="showFailedLoginCard()">Try Again</button>
+      </div>
+    </div>
+  </div>  
+
+<div class="container" id="loginCard" *ngIf="showloginCard">
+    <div class="card position-relative">
+        <span id="closeButton" (click)="showLoginCard(false)">✖</span>
+        <div class="card-body">
+            <!-- Your Customer Login Form -->
+            <h5>Login</h5>
+            <form>
+                <div class="mb-3">
+                    <label for="customerEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="customerEmail" name="email" [(ngModel)]="loginobj.email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="customerPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="customerPassword" name="password" [(ngModel)]="loginobj.password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" name="customer" (click)="login(1)">Customer Login</button>
+                <button type="submit" class="btn btn-primary ms-3" name ="staff" (click)="login(2)">Staff Login</button>
+            </form>
+        </div>
+    </div>
+</div>

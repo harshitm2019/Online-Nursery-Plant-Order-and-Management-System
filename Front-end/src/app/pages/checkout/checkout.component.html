@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        #debitcredit {
+            display: block;
+        }
+
+        #netbanking {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row mb-4"
+            style=" background: linear-gradient(#121212, #2b2b2b); height: 100px; border-radius: 10px;">
+            <div class="col-md-2">
+                <button type="button" style="position: absolute; right: 550px;" class="btn btn-primary mt-4"  (click)="showCart()">View Cart</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button"  style="position: absolute;right: 400px;" class="btn btn-primary mt-4" (click)="showPlantSearch()">Plant Search</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary mt-4" style="position: absolute; right: 250px;margin-right: 15px;" (click)="showDashboard()">Dashboard</button>
+            </div>
+        </div>
+        <h2 class="mb-4">Checkout</h2>
+
+        <!-- Checkout Form -->
+        <form #myForm = "ngForm" (ngSubmit)="payment(myForm)">
+            <!-- Billing Information -->
+            <div class="mb-4">
+                <h4>Billing Information</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" name="firstName" ngModel required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" [(ngModel)]="email" placeholder="you@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" name="address" [(ngModel)]="this.plantorderObj.plantSite" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" ngModel required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" required>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" id="zip" required>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h5 class="my-0 mb-3" style="color: blue;">Do You Want AMC ?</h5>
+                            <select class="form-select mb-3" name="amcOption" (change)="onSelectAmcOption($event)"
+                            [(ngModel)]="plantorderObj.amcOpted" required>   
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            </select>
+                        </div>
+                        <span class="text-muted mt-4"><button class="btn btn-primary" type="button"  (click)="showAmcPlan()">View AMC Plans</button></span>                     
+                    </li>
+                </ul>
+            </div>
+           
+            <div>
+                <p *ngIf="showSelectYesOption" style="color: red;font-style: italic; font-size: larger;">Select yes to avail AMC or Click on No</p>
+                 <table class="table" *ngIf="showPlan">
+                    <thead>
+                        <tr>
+                          <th>Select</th> 
+                          <th>AMC ID</th>
+                          <th>AMC Name</th>
+                          <th>Duration</th>
+                          <th>Cost</th>
+                          <th>Other Details</th>
+                        </tr>
+                    </thead>   
+                    <tbody>
+                        <tr *ngFor="let i of amcObj; let idx = index"> 
+                           <td><input type="radio" name="ch"  (change)="handleCheckBox($event,i.amcId,i.cost)" [disabled]="!checked"></td>
+                           <td>{{i.amcId}}</td>
+                           <td>{{i.amcName}}</td>
+                           <td>{{i.duration}} year</td>
+                           <td>{{i.cost}}</td>
+                           <td>{{i.otherDetails}}</td>
+                        </tr>
+                    </tbody>              
+                 </table>
+            </div>
+
+            <!-- Payment Information -->
+            <div class="mb-4">
+                <h4>Payment Information</h4>
+                <div class="mb-3">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select class="form-select" name="paymentMethod" (change)="onSelect($event)" [(ngModel)]="paymentObj.payMode" required>
+                        <option value="" selected disabled>Select Payment Method</option>
+                        <option value="cashOnDelivery">Cash on Delivery</option>
+                        <option value="netbanking">Netbanking</option>
+                        <option value="debitCard">Debit Card</option>
+                        <option value="creditCard">Credit Card</option>
+                    </select>
+                </div>
+            </div>
+            <div id="debitcredit" *ngIf="selectedOption === 'debitCard' || selectedOption === 'creditCard'">
+                <div class="mb-3">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="text" class="form-control" id="expiryDate" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cvv">CVV</label>
+                        <input type="text" class="form-control" id="cvv" required>
+                    </div>
+                </div>
+            </div>
+            <div id="netbanking" *ngIf="selectedOption === 'netbanking' ">
+
+                <div class="col-md-6 mb-3">
+                    <label for="CRN">CRN</label>
+                    <input type="text" class="form-control" id="CRN" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Password">Password</label>
+                    <input type="text" class="form-control" id="Password" required>
+                </div>
+            </div>
+
+
+            <!-- Order Summary -->
+            <div>
+                <h4>Order Description</h4>
+                <!-- Display ordered items with their quantities and prices -->
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm" *ngFor="let i of orderDescription">
+                        <div>
+                            <h6 class="my-0">Plant Name : {{ i.plantname }}</h6>
+                            <small class="text-muted">Quantity: {{ i.qty }}</small>
+                        </div>
+            
+                        <span class="text-muted">Rs .{{i.rate * i.qty}}</span>
+                        
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
+                <div class="d-flex justify-content-between">
+                    <span>Total (INR)</span>
+                    <strong>Rs {{totalAmt}}</strong>
+                </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <button class="btn btn-primary btn-lg mt-2"
+             type="submit" (click)="allowSubmit = true">Payment</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+<html>

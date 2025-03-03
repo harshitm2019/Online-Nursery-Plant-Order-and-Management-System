@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+     
+    <nav class="navbar navbar-expand-lg bg-color py-4 pt-lg-5">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="#">Nursery Plant</a>
+            <div class="col-md-3">
+                <button type="button" (click)="manage_Complaint()" class="btn btn-dark mt-4 mb-3" style="margin-right: 5px;" >Manage Complaint</button>
+                <button type="button" (click)="dashboard()" class="btn btn-dark mt-4 mb-3" style="margin-right: 7px;" >Dashboard</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Order Details Content -->
+    <div class="container mt-4">
+        <h2 class="mb-4"> Pending Complaint Details</h2>
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Complaint Id</th>
+                        <th>Plantation Id</th>
+                        <th>Complaint Date</th>
+                        <th>Dead Plant</th>
+                        <th>Plant Qty</th>
+                        <th>Other Problem</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of complaintObj;let idx = index">
+                        <td>{{i.compId}}</td>
+                        <td>{{i.plantationId}}</td>
+                        <td>{{i.compDate}}</td>
+                        <td>{{i.deadPlant}}</td>
+                        <td>{{i.plantQty}}</td>
+                        <td>{{i.otherProblem}}</td>
+                        <td><button type="button" (click)="manageComplaint(idx,i.compId)" class="btn btn-primary">Manage</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+         <div class="table-responsive mt-4" *ngIf="showManageComplaint">
+            <table class="table table-bordered table-striped" >
+                <thead>
+                   <tr>
+                       <th>Maintainence Date</th>
+                       <th>Descrption</th>
+                       <th>AMC Applicable</th>
+                       <th>Maintainence Cost</th>
+                       <th>Other Cost</th>
+                       <th>Action</th>
+                   </tr>
+                </thead>
+                   <tbody>
+                         <tr *ngFor="let i of serviceObj">
+                            <td><input type="date" name="maintainenceDate" [(ngModel)]="i.maintainenanceDate" class="form-control"  placeholder="Enter the Date" required></td> 
+                            <td><input type="text" name="descrption" [(ngModel)]="i.description" class="form-control" placeholder="Enter Descrption" required></td>
+                            <td>
+  
+                                 <select name="amcOption" class="form-control" (change)="onAmcChange($event)">
+                                     <option value="">Select</option>
+                                     <option value="Yes">Yes</option>
+                                     <option value="No">No</option>
+                                 </select>
+
+                            </td>
+                            <td><input type="text" name="maintainCost" [(ngModel)]="i.cost" class="form-control" [disabled]="isCostApplicable"></td>
+                            <td>
+                                <select name="otherCost" class="form-control" (change)="onOtherCostChange($event)">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </td>
+                            <td><button type="button" (click)="update()" class="btn btn-dark" >Update</button>
+                                <button type="button" class="btn btn-danger ms-3"  name="discard">X</button></td>
+                       </tr>
+                   </tbody>
+            </table>
+           
+            <div class="table-responsive mt-4" *ngIf="isOtherCostApplicable">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        <th>Item Name</th>
+                        <th>Qty</th>
+                        <th>Rate</th>
+                        <th>Add One More</th>
+                        <th>Remove</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                          <tr *ngFor="let j of serviceObj[i].usedItems;let idx = index">
+                             <td><input type="text" class="form-control" name="itemName" [(ngModel)]="j.itemName" placeholder="Enter Item Name"></td>
+                             <td><input type="number" class="form-control" name="qty" [(ngModel)]="j.qty" placeholder="Enter the Qty"></td>
+                             <td><input type="text" class="form-control" name="rate" [(ngModel)]="j.rate" placeholder="Enter the rate"></td>
+                             <td><button type="button" (click)="addRow()" class="btn btn-dark">+</button></td>
+                             <td><button type="button" class="btn btn-danger" (click)="remove(idx)">X</button></td>
+                          </tr>
+                     </tbody>
+                    <button type="button" (click)="save()" class="btn btn-dark mt-4">Save</button>
+                </table>
+            </div>
+            </div> 
+ 
+             <h4>After all update submit here</h4> 
+             <button class="btn btn-primary" (click)="submitServiceDetails()" type="button">Submit</button>
+     </div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
