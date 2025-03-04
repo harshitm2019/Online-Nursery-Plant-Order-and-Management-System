@@ -1,6 +1,6 @@
  About the Project
 
-This project is an Online Nursery Plant Order & Maintenance System that allows users to browse, order plants, and manage maintenance schedules. It is built using Spring Boot for the backend and Angular for the frontend.
+This project is an Online Nursery Plant Order & Management System that allows users to browse, order plants, and manage maintenance schedules. It is built using Spring Boot for the backend and Angular for the frontend.
 
 Features
 
